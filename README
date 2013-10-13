@@ -6,3 +6,26 @@ $ git add README //加入修改列表
 $ git commit -m 'first commit' //递交修改声明
 $ git remote add origin git@github.com:abcd/tmp.git //为远程Git更名为origin
 $ git push -u origin master //推送此次修改
+
+
+生成新的密钥：
+
+Ssh-keygen –t rsa –C “defnngj@gmai.com” 
+ 
+
+注意: 此处的邮箱地址，你可以输入自己的邮箱地址。在回车中会提示你输入一个密码，这个密码会在你提交项目时使用，如果为空的话提交项目时则不用输入。这个设置是防止别人往你的项目里提交内容。
+
+ 
+
+打开本地C:\Documents and Settings\Administrator\.ssh\id_rsa.pub文件。此文件里面内容为刚才生成人密钥。
+
+登陆github系统。点击右上角的 Account Settings--->SSH Public keys ---> add another public keys
+
+把你本地生成的密钥复制到里面（key文本框中）， 点击 add key 就ok了
+
+在git中运行下面命令：
+
+ 
+
+$ git –T git@github.com
+如果提示：Hi defnngj You've successfully authenticated, but GitHub does not provide shell access. 说明你连接成功了。
