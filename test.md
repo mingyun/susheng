@@ -20,3 +20,24 @@
 操作示例：
 
     $ git clone git://github.com/gotgithub/helloworld.git
+
+
+Git的分支就是保存在.git/refs/heads/命名空间下的引用。引用文件的内容是该分支对应的提交ID。当前版本库中的默认分支master就对应于文件.git/refs/heads/master。
+
+当前master文件的内容是https://github.com/mingyun/mingyun/commit/c39d2180031739f667373543253bef1db5364705
+中的c39d2180031739f667373543253bef1db5364705
+
+
+
+touch README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/mingyun/susheng.github.io.git
+git push -u origin master
+
+git remote add origin https://github.com/mingyun/susheng.github.io.git
+git push -u origin master
+
+搭建一个免费的，无限流量的Blog
+http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html
