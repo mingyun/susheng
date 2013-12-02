@@ -1,0 +1,246 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>网友涛涛分享原创js实现选项卡+无缝轮播特效</title>
+<style type="text/css">
+*{margin:0;padding:0;list-style-type:none;}
+a,img{border:0;}
+body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";}
+/* TTSlider */
+.TTSlider{width:980px;margin:30px auto}
+.TTSlider li{list-style-type:none;float:left;}
+.TTSlider li img{border:none;}
+.TTSliderTitle{background:#FAFAFA;height:63px;}
+.TTSliderTitle ul{width:980px;}
+.TTSliderTitle li{width:140px;height:63px;position:relative;z-index:3;left:0;}
+.TTSliderTitle li div{border-right:1px solid #C3C5C7;border-top:1px solid #C3C5C7;left:0;right:0;top:0;bottom:0;position:absolute;_width:139px;_height:62px}
+.TTSliderTitle .cur div{border:2px solid #333;background:#fff;z-index:3;border-bottom:none;bottom:-2px;_height:63px;_width:136px}
+.TTSliderTitle .noneBorRight div{border-right:none;}
+.TTSliderTitle li a{display:block;width:50%;float:left;height:100%;line-height:61px;text-decoration:none;overflow:hidden;*width:49%;font-size:12px}
+.TTSliderTitle li a img{height:50px;margin:6px;width:50px}
+/* TTSliderPic */
+.TTSliderPic{width:910px;padding:13px 33px;border:2px solid #333;position:relative;height:180px;z-index:1}
+.TTSliderPicList{position:relative;width:890px;overflow:hidden;height:180px;}
+.TTSliderPic ul{position:absolute;display:none;top:3px;left:0}
+.TTSliderPic ul.show{display:block;}
+.TTSliderPic li img{width:150px }
+.TTSliderPic li{width:150px;padding:0 14px;height:180px;}
+.TTSliderPic li a{display:block;height:150px;overflow:hidden;}
+.TTSliderPic li p{height:30px;line-height:30px;text-align:center;color:#ED0A0A}
+.TTSliderPrevBtn,.TTSliderNextBtn{height:100%;width:45px;position:absolute;z-index:999;top:0;text-align:center;}
+.TTSliderPrevBtn{left:0}
+.TTSliderNextBtn{right:0;}
+.TTSliderPrevBtn a,.TTSliderNextBtn a{height:30px;width:20px;display:inline-block;background:url(images/btn.png) no-repeat;margin-top:75px}
+.TTSliderNextBtn a{background:url(images/btn.png) no-repeat -30px 0}
+</style>
+</head>
+<body>
+
+
+<div class='TTSlider' id='TTSlider'>
+	<div class='TTSliderTitle'>
+		<ul>
+			<li class='cur'><div><a href="http://www.17sucai.com/"><img src='http://www.17sucai.com/preview/658/2013-08-14/js%E5%AE%9E%E7%8E%B0%E9%80%89%E9%A1%B9%E5%8D%A1+%E6%97%A0%E7%BC%9D%E8%BD%AE%E6%92%AD%E7%89%B9%E6%95%88/images/one.jpg'/></a><a href="http://www.17sucai.com/">栏目一</a></div></li>
+			<li><div><a href="http://www.17sucai.com/"><img src='http://www.17sucai.com/preview/658/2013-08-14/js%E5%AE%9E%E7%8E%B0%E9%80%89%E9%A1%B9%E5%8D%A1+%E6%97%A0%E7%BC%9D%E8%BD%AE%E6%92%AD%E7%89%B9%E6%95%88/images/two.jpg'/></a><a href="http://www.17sucai.com/">栏目二</a></div></li>
+			<li><div><a href="http://www.17sucai.com/"><img src='http://www.17sucai.com/preview/658/2013-08-14/js%E5%AE%9E%E7%8E%B0%E9%80%89%E9%A1%B9%E5%8D%A1+%E6%97%A0%E7%BC%9D%E8%BD%AE%E6%92%AD%E7%89%B9%E6%95%88/images/one.jpg'/></a><a href="http://www.17sucai.com/">栏目三</a></div></li>
+			<li><div><a href="http://www.17sucai.com/"><img src='http://www.17sucai.com/preview/658/2013-08-14/js%E5%AE%9E%E7%8E%B0%E9%80%89%E9%A1%B9%E5%8D%A1+%E6%97%A0%E7%BC%9D%E8%BD%AE%E6%92%AD%E7%89%B9%E6%95%88/images/two.jpg'/></a><a href="http://www.17sucai.com/">栏目四</a></div></li>
+			<li><div><a href="http://www.17sucai.com/"><img src='http://www.17sucai.com/preview/658/2013-08-14/js%E5%AE%9E%E7%8E%B0%E9%80%89%E9%A1%B9%E5%8D%A1+%E6%97%A0%E7%BC%9D%E8%BD%AE%E6%92%AD%E7%89%B9%E6%95%88/images/one.jpg'/></a><a href="http://www.17sucai.com/">栏目五</a></div></li>
+			<li><div><a href="http://www.17sucai.com/"><img src='http://www.17sucai.com/preview/658/2013-08-14/js%E5%AE%9E%E7%8E%B0%E9%80%89%E9%A1%B9%E5%8D%A1+%E6%97%A0%E7%BC%9D%E8%BD%AE%E6%92%AD%E7%89%B9%E6%95%88/images/two.jpg'/></a><a href="http://www.17sucai.com/">栏目六</a></div></li>
+			<li><div><a href="http://www.17sucai.com/"><img src='http://www.17sucai.com/preview/658/2013-08-14/js%E5%AE%9E%E7%8E%B0%E9%80%89%E9%A1%B9%E5%8D%A1+%E6%97%A0%E7%BC%9D%E8%BD%AE%E6%92%AD%E7%89%B9%E6%95%88/images/one.jpg'/></a><a href="http://www.17sucai.com/">栏目七</a></div></li>
+		</ul>
+	</div>
+	<div class='TTSliderPic'>
+		<div id='TTSliderPrevBtn' class='TTSliderPrevBtn'><a href='javascript:;'></a></div>
+		<div id='TTSliderNextBtn' class='TTSliderNextBtn'><a href='javascript:;'></a></div>
+		<div class='TTSliderPicList'>
+			<ul class='show'>
+				<li class='on'><a href="http://www.17sucai.com/"><img src='http://www.17sucai.com/preview/658/2013-08-14/js%E5%AE%9E%E7%8E%B0%E9%80%89%E9%A1%B9%E5%8D%A1+%E6%97%A0%E7%BC%9D%E8%BD%AE%E6%92%AD%E7%89%B9%E6%95%88/images/1.jpg'/></a><p>35元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='http://www.17sucai.com/preview/658/2013-08-14/js%E5%AE%9E%E7%8E%B0%E9%80%89%E9%A1%B9%E5%8D%A1+%E6%97%A0%E7%BC%9D%E8%BD%AE%E6%92%AD%E7%89%B9%E6%95%88/images/2.jpg'/></a><p>35元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='http://www.17sucai.com/preview/658/2013-08-14/js%E5%AE%9E%E7%8E%B0%E9%80%89%E9%A1%B9%E5%8D%A1+%E6%97%A0%E7%BC%9D%E8%BD%AE%E6%92%AD%E7%89%B9%E6%95%88/images/3.jpg'/></a><p>35元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/4.jpg'/></a><p>35元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/5.jpg'/></a><p>35元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/11.jpg'/></a><p>35元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/4.jpg'/></a><p>35元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/5.jpg'/></a><p>35元</p></li>
+			</ul>
+			<ul>
+				<li><a href="http://www.17sucai.com/"><img src='images/11.jpg'/></a><p>35元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/22.jpg'/></a><p>35元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/33.jpg'/></a><p>75元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/44.jpg'/></a><p>75元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/11.jpg'/></a><p>75元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/44.jpg'/></a><p>35元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/55.jpg'/></a><p>85元</p></li>
+			</ul>
+			<ul>
+				<li><a href="http://www.17sucai.com/"><img src='images/2.jpg'/></a><p>35元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/22.jpg'/></a><p>35元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/33.jpg'/></a><p>75元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/44.jpg'/></a><p>75元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/11.jpg'/></a><p>75元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/44.jpg'/></a><p>35元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/55.jpg'/></a><p>85元</p></li>
+			</ul>
+			<ul>
+				<li><a href="http://www.17sucai.com/"><img src='images/5.jpg'/></a><p>35元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/33.jpg'/></a><p>75元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/44.jpg'/></a><p>75元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/11.jpg'/></a><p>75元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/44.jpg'/></a><p>35元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/55.jpg'/></a><p>85元</p></li>
+			</ul>
+			<ul>
+				<li><a href="http://www.17sucai.com/"><img src='images/3.jpg'/></a><p>35元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/33.jpg'/></a><p>75元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/44.jpg'/></a><p>75元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/11.jpg'/></a><p>75元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/44.jpg'/></a><p>35元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/55.jpg'/></a><p>85元</p></li>
+			</ul>
+			<ul>
+				<li><a href="http://www.17sucai.com/"><img src='images/11.jpg'/></a><p>35元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/22.jpg'/></a><p>35元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/33.jpg'/></a><p>75元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/44.jpg'/></a><p>75元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/11.jpg'/></a><p>75元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/44.jpg'/></a><p>35元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/55.jpg'/></a><p>85元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/44.jpg'/></a><p>75元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/11.jpg'/></a><p>75元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/44.jpg'/></a><p>35元</p></li>
+			</ul>
+			<ul>
+				<li><a href="http://www.17sucai.com/"><img src='images/4.jpg'/></a><p>35元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/22.jpg'/></a><p>35元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/33.jpg'/></a><p>75元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/44.jpg'/></a><p>75元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/11.jpg'/></a><p>75元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/44.jpg'/></a><p>35元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/44.jpg'/></a><p>75元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/11.jpg'/></a><p>75元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/44.jpg'/></a><p>35元</p></li>
+				<li><a href="http://www.17sucai.com/"><img src='images/55.jpg'/></a><p>85元</p></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+window.onload=function()
+{
+	var oTTSlider=document.getElementById('TTSlider');
+	var oTTSliderTitle=getByClass('TTSliderTitle',oTTSlider,'div')[0];
+	var aSubNav=oTTSliderTitle.getElementsByTagName('li');
+	var oTTSliderPrevBtn=document.getElementById('TTSliderPrevBtn');
+	var oTTSliderNextBtn=document.getElementById('TTSliderNextBtn');
+	var oTTSliderPicList=getByClass('TTSliderPicList',oTTSlider,'div')[0];
+	var aItem=oTTSliderPicList.getElementsByTagName('ul');
+	var len=aItem.length;
+	var showIndex=aItemImgWidth=iNow=0;
+	var aEle=[];
+
+	for(var i=0;i<len;i++)
+	{  
+		var aItemImgs=aItem[i].getElementsByTagName('li');
+		if(!aItemImgWidth)
+		{
+			aItemImgWidth=aItemImgs[0].offsetWidth;
+		}
+		aEle.push(aItemImgs);	//存入数组,考虑到有多个轮播,且每个轮播里面的图片个数可能不一致.
+
+
+		aSubNav[i].index=i;
+		aSubNav[i].onmouseover=function()//切换
+		{
+			var index=showIndex=this.index;  
+			for(var j=0;j<len;j++)
+			{
+				if(j!=index)
+				{
+						aItem[j].className='';
+						aSubNav[j].className='';
+				}
+			}
+			aSubNav[index-1] && (aSubNav[index-1].className='noneBorRight' );
+			if(index>0)
+			{
+				(aSubNav[0].getElementsByTagName('div')[0].style.borderLeft='1px solid #ccc');
+			}
+			else
+			{
+				aSubNav[0].getElementsByTagName('div')[0].style.borderLeft='2px solid #333';
+			}
+			
+			aSubNav[index].className='cur';
+			aItem[index].className='show';
+		}
+	}
+
+
+	for(var i=0;i<len;i++)
+	{
+		var num=aEle[i].length;
+		if(aItem[i].className=='show')
+		{
+			showIndex=i;
+		}
+		aItem[i].style.width=num*(aItemImgWidth)+'px'
+	}
+
+	oTTSliderNextBtn.onclick=function()
+	{
+		var maxNum=aEle[showIndex].length-1;
+		aItem[showIndex].insertBefore(aEle[showIndex][maxNum],aEle[showIndex][0]);
+		aItem[showIndex].style.left=-aItemImgWidth+'px';
+		doMove(aItem[showIndex],0);
+	}
+
+	oTTSliderPrevBtn.onclick=function()
+	{
+		doMove(aItem[showIndex],-(aItemImgWidth),function(){
+			aItem[showIndex].style.left=0;
+			aItem[showIndex].appendChild(aEle[showIndex][0])
+		});
+	}
+
+	function doMove(o,t,fn)
+	{
+		clearInterval(o.timer);
+		o.timer=setInterval(function(){
+			var is= (t-getStyle(o,'left'))/8;
+			is= is>0?Math.ceil(is):Math.floor(is);
+			if(t==o.offsetLeft)
+			{
+				clearInterval(o.timer);
+				(typeof fn==='function') && fn();
+			}
+			else
+			{
+				o.style.left=o.offsetLeft+is+'px';
+			}
+
+		},30)
+	}
+
+	function getStyle(o,a)
+	{
+		return o.currentStyle ? parseFloat(o.currentStyle[a]) : parseFloat(getComputedStyle(o,false)[a]);
+	}
+
+	function getByClass(s,p,e)
+	{
+		var reg=new RegExp('(\\b)'+s+'(\\b)');
+		var aElement=(p||document).getElementsByTagName(e||'*');
+		var aResult=[];
+		for(var i=0;i<aElement.length;i++)
+		{
+			reg.test(aElement[i].className) && aResult.push(aElement[i]);
+		}
+		return aResult;
+	}
+}
+</script>
+</body>
+</html>
