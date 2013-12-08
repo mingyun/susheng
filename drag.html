@@ -1,0 +1,104 @@
+
+<html>
+
+<style>
+
+#d1{position:absolute;left:100px;top:100px;display:none;width:300px;height:330px;}
+
+#d2{background:red;width:300px;height:30px;}
+
+#d3{border:1px solid red;width:298px;height:200px;background:#ffffff}
+
+</style>
+
+<body>
+
+	<div id="d1">
+
+		<div id="d2"></div>
+
+		<div id="d3">拖到的DIV演示，主要复习一下JS的事件</div>
+
+	</div>
+
+	<a href="javascript:void(0)" onclick="show()">点击注册</a>
+
+
+
+	<script>
+
+		var d1 = document.getElementById("d1");
+
+		var d2 = document.getElementById("d2");
+
+		
+
+
+
+		//显示div将放入WEB中间位置
+
+		function show(){
+
+			//alert(window.screen.width);
+
+			d1.style.display="block";
+
+			d1.style.left=screen.width/2-150.;
+
+			d1.style.top=screen.height/2-330;
+
+		}
+
+		
+
+
+
+		//设down为真时可以移动DIV坐标
+
+		var down = false;
+
+		document.onmousemove=function(e){
+
+			//兼容火狐与IE
+
+			var ev = e || window.event;
+
+			var cx = ev.clientX;
+
+			var cy = ev.clientY;
+
+			if(down){
+
+			d1.style.top = cy-15;
+
+			d1.style.left = cx-150;
+
+			}
+
+		}
+
+	
+
+		//如果按下鼠标时DOWN为真
+
+		d2.onmousedown = function(){
+
+			down = true;
+
+		}
+
+		
+
+		//如果松开鼠标,DOWN为假
+
+		document.onmouseup = function(){
+
+			down = false;
+
+		}
+
+	</script>
+
+</body>
+
+</html>
