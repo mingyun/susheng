@@ -1,0 +1,37 @@
+最佳a片隐藏方法
+
+在a片目录下
+
+git init
+
+git add .
+
+git commit -m "init commit"
+
+rm -r *
+
+要看的时候checkout回来
+
+想把整个osc动弹都屏蔽掉？那简单！
+
+比如chrome下安装下Adblock Plus，在自定义过滤里添加：
+
+www.oschina.net##div#DynaInfo
+
+1，HOST字段中通配符'%'匹配所有主机，如果HOST字段为空，等价于'%'
+2，USER字段不支持通配符，但空白的USER字段匹配所有用户
+3，服务器在user表中读取权限时，优先匹配最能确定具体主机的纪录，由于'%'匹配所有主机，所以localhost优先于'%'
+4，有相同HOST值的记录，优先匹配具体user值的记录。
+因为mysql在验证用户时先对user表进行排序：
+1. specified的host排在pattern的host前面。
+2. 相同host的条目，specified的user排在anonymous的前面。
+3. 其他按默认存储顺序。
+排序结束后，从第一条开始匹配，如果匹配符合则忽略剩下所有
+GRANT EXECUTE ON PROCEDURE `test`.`proc_name` TO 'dianshilook'@'114.112.162.139'
+update mysql.user set host='114.112.162.139' where user='dianshilook';
+
+
+
+
+
+
