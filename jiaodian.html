@@ -1,0 +1,208 @@
+<!-- 代码 开始 -->
+<script type="text/javascript" src="http://www.datouwang.com/uploads/demo/jiaoben/201401/jiaoben148/js/jquery.1.7.2.min.js"></script>
+
+<div id="focusBar"> 
+
+	<a href="javascript:void(0)" class="arrL" onclick="prePage()" style="left: 0px;">左</a>
+
+	<a href="javascript:void(0)" class="arrR" onclick="nextPage()" style="right: 0px;">右</a>
+
+	<ul class="mypng">
+
+		<li id="focusIndex1" style="background:url(./img/banner_bj_001.gif) repeat-x;">
+
+		<div class="focusL"><a href="http://www.datouwang.com/"><img src="http://www.datouwang.com/uploads/demo/jiaoben/201401/jiaoben148/img/1.png" width="1000" height="540"></a></div>
+
+		<div class="focusR"><a href="http://www.datouwang.com/"><img src="http://www.datouwang.com/uploads/demo/jiaoben/201401/jiaoben148/img/2.png" width="1000" height="540"></a></div>
+
+		<div style="width:1000px; height:540px; margin:0 auto; background:url(http://www.datouwang.com/uploads/demo/jiaoben/201401/jiaoben148//img/banner_bj_01.jpg) no-repeat;">
+
+		</li>
+
+		<li id="focusIndex2" style="background:url(http://www.datouwang.com/uploads/demo/jiaoben/201401/jiaoben148//img/banner_bj_002.gif) repeat-x;">
+
+		<div class="focusL"><a href="http://www.datouwang.com/"><img src="http://www.datouwang.com/uploads/demo/jiaoben/201401/jiaoben148/img/3.png" width="1000" height="540"></a></div>
+
+		<div class="focusR"><a href="http://www.datouwang.com/"><img src="http://www.datouwang.com/uploads/demo/jiaoben/201401/jiaoben148/img/4.png" width="1000" height="540"></a></div>
+
+		<div style="width:1000px; height:540px; margin:0 auto;"></div>
+
+		</li>
+
+		<li id="focusIndex3" style="background:url(./img/banner_bj_003.gif) repeat-x;">
+
+		<div class="focusL"><a href="http://www.datouwang.com/"><img src="img/5.png" width="1000" height="540"></a></div>
+
+		<div class="focusR"><a href="http://www.datouwang.com/"><img src="img/6.png" width="1000" height="540"></a></div>
+
+		<div style="width:1000px;height:540px; margin:0 auto; background:url(./img/banner_bj_03.jpg) no-repeat; "></div>
+
+		</li>
+
+		<li id="focusIndex4" style="background:url(./img/banner_bj_004.gif) repeat-x;">
+
+		<div class="focusL"><a href="http://www.datouwang.com/"><img src="img/7.png" width="1000" height="540"></a></div>
+
+		<div class="focusR"><a href="http://www.datouwang.com/"><img src="img/8.png" width="1000" height="540"></a></div>
+
+		<div style="width:1000px; height:540px; margin:0 auto; background:url(./img/banner_bj_04.jpg) no-repeat;"></div>
+
+		</li>
+
+	</ul>
+
+</div>
+
+<script type="text/javascript">
+/* 代码整理：大头网 www.datouwang.com */
+jQuery.cookie = function(name, value, options) {
+    if (typeof value != 'undefined') { // name and value given, set cookie
+        options = options || {};
+        if (value === null) {
+            value = '';
+            options.expires = -1;
+        }
+        var expires = '';
+        if (options.expires && (typeof options.expires == 'number' || options.expires.toUTCString)) {
+            var date;
+            if (typeof options.expires == 'number') {
+                date = new Date();
+                date.setTime(date.getTime() + (options.expires * 24 * 60 * 60 * 1000));
+            } else {
+                date = options.expires;
+            }
+            expires = '; expires=' + date.toUTCString(); // use expires attribute, max-age is not supported by IE
+        }
+        var path = options.path ? '; path=' + options.path : '';
+        var domain = options.domain ? '; domain=' + options.domain : '';
+        var secure = options.secure ? '; secure' : '';
+        document.cookie = [name, '=', encodeURIComponent(value), expires, path, domain, secure].join('');
+    } else { // only name given, get cookie
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+};
+
+
+$(function() {
+	$(window).bind("mousewheel", function(e, delta) {
+		var mousewheelX = parseInt($(window).height()/3);
+		mousewheelX = (mousewheelX<200 || mousewheelX>350)?200:mousewheelX;
+		//mousewheelX = 250;
+		if(delta > 0) {
+			mousewheelX = -mousewheelX;
+		}
+		$('html,body').stop().animate({scrollTop: $(window).scrollTop()+mousewheelX}, 700);
+		return false;
+	});
+	
+	$("#focusIndex1").show();
+	$("#focusBar li").css("width",$(window).width());
+	$("a.arrL").mouseover(function(){stopFocusAm();}).mouseout(function(){starFocustAm();});
+	$("a.arrR").mouseover(function(){stopFocusAm();}).mouseout(function(){starFocustAm();});
+	$("#focusBar li").mouseover(function(){stopFocusAm();}).mouseout(function(){starFocustAm();});
+	starFocustAm();
+});
+
+/*------focus-------*/
+$("#focusBar").hover(
+	function () {
+		$("#focusBar .arrL").stop(false,true);
+		$("#focusBar .arrR").stop(false,true);
+		$("#focusBar .arrL").animate({ left: 0}, { duration: 500 });
+		$("#focusBar .arrR").animate({ right: 0}, { duration: 500 });
+	}, function () {
+		$("#focusBar .arrL").stop(false,true);
+		$("#focusBar .arrR").stop(false,true);
+		$("#focusBar .arrL").animate({ left: -52}, { duration: 500 });
+		$("#focusBar .arrR").animate({ right: -52}, { duration: 500 });
+	}
+);
+
+var timerFID;
+
+function nextPage() {
+	changeFocus(true);
+}
+function prePage() {
+	changeFocus(false);
+}
+
+var currentFocusI=1;
+var changeingFocus = false;
+function changeFocus(dir) {
+	if($("#focusBar li").length <= 1) return;
+	if(changeingFocus) return;
+	changeingFocus = true;
+	
+	$("#focusIndex"+nextI).stop(false,true);
+	$("#focusIndex"+nextI+" .focusL").stop(false,true);
+	$("#focusIndex"+nextI+" .focusR").stop(false,true);
+	
+	var nextI = dir?currentFocusI+1:currentFocusI-1;
+	nextI = nextI>$("#focusBar li").length?1:(nextI<1?$("#focusBar li").length:nextI);
+	//var focusWidth = $(window).width()>1000?1000:$(window).width();
+	$("#focusIndex"+currentFocusI).css("width",$(window).width());
+	$("#focusIndex"+nextI).css("width",$(window).width());
+	if(dir) {
+		$("#focusIndex"+nextI).css("left",$(window).width());
+		$("#focusIndex"+nextI+" .focusL").css("left",$(window).width()/2);
+		$("#focusIndex"+nextI+" .focusR").css("left",$(window).width()/2);
+		$("#focusIndex"+currentFocusI).show();
+		$("#focusIndex"+nextI).show();
+		
+		$("#focusIndex"+currentFocusI+" .focusL").animate({left: -($(window).width()/2+1000)},300,'easeInExpo');
+		$("#focusIndex"+currentFocusI+" .focusR").animate({left: -($(window).width()/2+1000)},500,'easeInExpo',function(){
+				$("#focusIndex"+nextI+" .focusL").animate({left: -500},1000,'easeInOutCirc');
+				$("#focusIndex"+nextI+" .focusR").animate({left: -500},1200,'easeInOutCirc');
+				
+				$("#focusIndex"+currentFocusI).animate({left: -$(window).width()},1000,'easeOutExpo');
+				$("#focusIndex"+nextI).animate({left: 0},1000,'easeOutExpo',function(){
+						$("#focusIndex"+currentFocusI).hide();
+						currentFocusI = nextI;
+						changeingFocus = false;
+				});
+		});
+	} else {
+		$("#focusIndex"+nextI).css("left",-$(window).width());
+		$("#focusIndex"+nextI+" .focusL").css("left",-($(window).width()/2+1000));
+		$("#focusIndex"+nextI+" .focusR").css("left",-($(window).width()/2+1000));
+		$("#focusIndex"+currentFocusI).show();
+		$("#focusIndex"+nextI).show();
+		
+		$("#focusIndex"+currentFocusI+" .focusR").animate({left: $(window).width()/2},300,'easeInExpo');
+		$("#focusIndex"+currentFocusI+" .focusL").animate({left: $(window).width()/2},500,'easeInExpo',function(){
+				$("#focusIndex"+nextI+" .focusL").animate({left: -500},1200,'easeInOutCirc');
+				$("#focusIndex"+nextI+" .focusR").animate({left: -500},1000,'easeInOutCirc');
+				
+				$("#focusIndex"+currentFocusI).animate({left: $(window).width()},1000,'easeOutExpo');
+				$("#focusIndex"+nextI).animate({left: 0},1000,'easeOutExpo',function(){
+						$("#focusIndex"+currentFocusI).hide();
+						currentFocusI = nextI;
+						changeingFocus = false;
+				});
+		});
+	}
+}
+function starFocustAm(){
+	timerFID = setInterval("timer_tickF()",12000);
+}
+function stopFocusAm(){
+	clearInterval(timerFID);
+}
+function timer_tickF() {
+	changeFocus(true);
+}
+
+</script>
