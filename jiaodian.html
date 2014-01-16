@@ -1,6 +1,25 @@
 <!-- 代码 开始 -->
 <script type="text/javascript" src="http://www.datouwang.com/uploads/demo/jiaoben/201401/jiaoben148/js/jquery.1.7.2.min.js"></script>
+<style>
+    @charset "utf-8";
+/* CSS Document *//* 代码整理：大头网 www.datouwang.com */
+body { margin:0; padding:0; font-size:14px; font-family:"Arial","微软雅黑"; color:#666666; line-height:24px; background-color:#ffffff;padding-top:64px; overflow-x:hidden;}
+a,a:hover {color:#666666;text-decoration:none; border:0px;}
+ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0px;padding:0px;}ul,li,dl,dt,dd{list-style-type:none;}
+img{border:0;}
+a{outline:none; /*移除虚线框  IE8,FF有用*/ hide-focus: expression(this.hideFocus=true); /*IE6、IE7*/}
+#focusBar { width:100%; height:540px; clear:both; position:relative; background:#242424; overflow:hidden;}
+#focusBar li { width:100%; clear:both; height:644px; display:none; position:absolute;/* position:relative;*/ overflow: hidden;}
+#focusBar .focusL { height:540px; margin-top: -1px; position:absolute; z-index:9; /*left:-1000px;*/ top:0px; left:-500px; margin-left:50%;}
+#focusBar .focusR { height:540px; margin-top: -1px; position:absolute; z-index:19;/* right:1000px; */top:0px; left:-500px; margin-left:50%;}
+a.arrL,a.arrR { display:block; width:52px; height:120px; color: #fff; font-size: 18px; text-align: center; line-height: 120px; position:absolute; top:210px; z-index:99; cursor:pointer; background:#be0000; background-repeat:no-repeat; }
+a.arrL { left:-52px; } a.arrR { right:-52px; }
 
+/* 兼容ie6png代码 */
+.mypng img {azimuth: expression( this.pngSet?this.pngSet=true:(this.nodeName == "IMG" && this.src.toLowerCase().indexOf('.png')>-1?(this.runtimeStyle.backgroundImage = "none", this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.src + "', sizingMethod='image')", this.src = "img/transparent.gif"):(this.origBg = this.origBg? this.origBg :this.currentStyle.backgroundImage.toString().replace('url("', '').replace('")', ''), this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.origBg + "', sizingMethod='crop')", this.runtimeStyle.backgroundImage = "none")), this.pngSet=true);}    
+        
+        
+</style>
 <div id="focusBar"> 
 
         <a href="javascript:void(0)" class="arrL" onclick="prePage()" style="left: 0px;">左</a>
