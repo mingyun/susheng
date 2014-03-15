@@ -1,0 +1,97 @@
+<div>
+  <div>
+    <div>这里是弹窗的标题</div>
+    <div>
+      <span title="min"></span>
+      <span title="max"></span>
+      <span title="close"></span>
+    </div>
+  </div>
+  <div>
+    <p> 让我们设想一个场景，有一个Web应用程序，它可以向用户提供附近不远处某商店运动鞋的打折优惠信息。使用HTML5 Geolocation API（地理定位API），你可以请求用户共享他们的位置，如果他们同意，应用程序就可以向其提供相关信息，告诉用户去附近哪家商店可以挑选到打折的鞋子。</p>
+    <p> HTMI，5 Geolocation技术的另一个应用场景是构建计算行走（跑步）路程的应用程序。想象一下，在开始跑步时通过手机浏览器启动应用程序的记录功能。在用户移动过程中，应用程序会记录已跑过的距离，还可以把跑步过程对应的坐标显示在地图上，甚至可以显示出海拔信息。如果用户正在和其他选手一起参加跑步比赛，应用程序甚至可以显示其对手的位置。</p>
+    <p> 再有一种HTML5 Geolocation应用场景是基于GPS导航的社交网络应用，可以用它看到好友们当前所处的位置，比如知道了好友的方位，就可以挑选合适的咖啡馆。此外，还有很多特殊的应用。</p>
+    <p> 让我们设想一个场景，有一个Web应用程序，它可以向用户提供附近不远处某商店运动鞋的打折优惠信息。使用HTML5 Geolocation API（地理定位API），你可以请求用户共享他们的位置，如果他们同意，应用程序就可以向其提供相关信息，告诉用户去附近哪家商店可以挑选到打折的鞋子。</p>
+    <p> HTMI，5 Geolocation技术的另一个应用场景是构建计算行走（跑步）路程的应用程序。想象一下，在开始跑步时通过手机浏览器启动应用程序的记录功能。在用户移动过程中，应用程序会记录已跑过的距离，还可以把跑步过程对应的坐标显示在地图上，甚至可以显示出海拔信息。如果用户正在和其他选手一起参加跑步比赛，应用程序甚至可以显示其对手的位置。</p>
+    <p> 再有一种HTML5 Geolocation应用场景是基于GPS导航的社交网络应用，可以用它看到好友们当前所处的位置，比如知道了好友的方位，就可以挑选合适的咖啡馆。此外，还有很多特殊的应用。</p>
+    <a href="#" rel="external nofollow" >MORE</a>
+  </div>
+</div>
+<style>
+
+body { font: 12px/1.5 'microsoft yahei', 微软雅黑, sinsum, 宋体; padding:10px 20px;}
+.popup { height: 400px; width: 600px; border: 1px solid #77C2ED; border-radius: 3px; position: fixed; top: 100px; left: 100px; display: none; }
+.popup_title { background: url(images/pupup_title_bg.jpg) repeat-x; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,.4) }
+.p_title_txt { padding: 2px 6px 4px; color: #FFF; font-size: 14px; text-shadow: 1px 1px 1px #333; float: left; width: 49%; }
+.p_title_controls { width: 40%; float: right; text-align: right; }
+.p_title_controls span { display: inline-block; background: url(images/control_bg.png) no-repeat 0 1px; height: 22px; width: 0; padding-left: 30px; overflow: hidden; cursor: pointer; }
+.p_title_controls .max { background-position: -32px 1px; }
+.p_title_controls .close { background-position: -64px 1px; }
+.popup_con { padding: 0 10px; line-height: 1.8; height: 364px; overflow: auto; }
+.popup_con p { text-indent: 2em; }
+.more { display: block; background: #76C1ED; overflow: hidden; padding: 3px 10px; border-radius: 3px; width: 50px; text-align: center; color: #FFF; text-decoration: none; }
+
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(e){
+ var this_p = $(".popup");
+ var this_con = $(".popup_con")
+ var defult_height = this_p.height();
+ var defult_width = this_p.width();
+ var p_max = false;
+ $(".test").click(function(){
+ this_p.css({'left':($(window).width() - this_p.width())/2,'top':($(window).height() - this_p.height())/2}).fadeIn("snow");
+ })
+ $(".close").click(function(){
+ this_p.fadeOut("fast")
+ })
+ $(".max").click(function(){
+ if(!p_max){
+ this_p.animate({"left":0,"top":0,"width":$(window).width(),"height":$(window).height()},200);
+ this_con.animate({"height":($(window).height()-36)})
+ p_max = true;
+ }else{
+ this_p.animate({'left':($(window).width()-defult_width)/2,'top':($(window).height()-defult_height)/2,"width":defult_width,"height":defult_height},200);
+ this_con.animate({"height":($(window).height()-36)})
+ p_max = false;
+ }
+ })
+ $(".min").click(function(){
+ this_p.animate({"left":10,"top":($(window).height()-32),"width":300,"height":32},200);
+ p_max = true;
+ this_con.animate({"height":($(window).height()-36)})
+ })
+ $(window).resize(function(){
+ if(p_max){
+ this_p.width($(window).width());
+ this_p.height($(window).height());
+ this_con.animate({"height":($(window).height()-36)})
+ }else{
+ this_p.animate({'left':($(window).width()-defult_width)/2,'top':($(window).height()-defult_height)/2,"width":defult_width,"height":defult_height},200);
+ this_con.animate({"height":($(window).height()-36)})
+ }
+ })
+ //拖动
+ var dragging = false;
+ var iX, iY;
+ $(".popup_title").mousedown(function(e){
+ dragging = true;
+ iX = e.clientX - parseInt(this_p.css('left'));
+ iY = e.clientY - parseInt(this_p.css('top'));
+ return false;
+ });
+ $(document).mousemove(function(e) {
+ if (dragging) {
+ //var e = e || window.event;
+ var oX = e.clientX - iX;
+ var oY = e.clientY - iY;
+ this_p.css({"left":oX + "px", "top":oY + "px"});
+ return false;
+ }
+ })
+ $(document).mouseup(function(e) {
+ dragging = false;
+ })
+});
+</script>
