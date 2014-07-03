@@ -1,3 +1,4 @@
+<?php
 function curl_call($times = 1) {
    $ch = curl_init();
    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
